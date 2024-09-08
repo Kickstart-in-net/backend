@@ -6,14 +6,16 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "terms")
-public class Term {
+@Document(collection = "chats")
+public class Chat {
     @MongoId
     private String id;
-    private String type;
-    private boolean isSatisfied;
-    private String body;
+    private List<Message> messageList;
+    private Long freelancerId;
+    private Long employerId;
 }
