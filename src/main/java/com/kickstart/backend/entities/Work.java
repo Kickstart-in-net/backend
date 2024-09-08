@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @Table(name = "work")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Work {
@@ -21,10 +22,12 @@ public class Work {
     @GeneratedValue
     private Long id;
 
-    @OneToOne(mappedBy = "assigned")
+    @ManyToOne
+    @JoinColumn(name = "assignedId")
     private Freelancer assignedId;
 
-    @OneToOne(mappedBy = "owner")
+    @ManyToOne
+    @JoinColumn(name = "ownerId")
     private Employer ownerId;
 
     private String title;
@@ -32,6 +35,6 @@ public class Work {
     private String budget;
     private LocalDate deadline;
 
-    @OneToMany(mappedBy = "skilldId")
+    @OneToMany(mappedBy = "workId")
     private List<Skill> skillIds;
 }

@@ -1,20 +1,19 @@
 package com.kickstart.backend.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Data
-@Builder
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name="freelancer")
+@EqualsAndHashCode(callSuper = true)
 public class Freelancer extends User {
     private String pan;
     private String profession;
@@ -24,9 +23,9 @@ public class Freelancer extends User {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> interests;
 
-    @OneToMany(mappedBy = "projectIds")
+    @OneToMany(mappedBy = "ownerId")
     private List<Project> projects;
 
-    @OneToMany(mappedBy = "work")
+    @OneToMany(mappedBy = "assignedId")
     private List<Work> works;
 }

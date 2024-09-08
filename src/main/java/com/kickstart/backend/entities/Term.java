@@ -13,7 +13,11 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 public class Term {
     @MongoId
     private String id;
-    private String type;
+    private Type type;
     private boolean isSatisfied;
     private String body;
+
+    public enum Type {
+        DEADLINE,BUDGET,FEATURE
+    }
 }

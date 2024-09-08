@@ -20,6 +20,10 @@ public class Skill {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "badgeIds")
+    @OneToMany(mappedBy = "skillId")
     private List<Badge> badge;
+
+    @ManyToOne
+    @JoinColumn(name = "workId")
+    private Work workId;
 }

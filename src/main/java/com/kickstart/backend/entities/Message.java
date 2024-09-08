@@ -22,16 +22,26 @@ public class Message {
     private String body;
     private LocalDate timestamp;
     private String mediaUrl;
-    private String status;
-    private String messageType;
+    private Status status;
+    private MessageType messageType;
     private Long chatId;
     private Reactions reaction;
 
-}
+    public enum MessageType {
+        ONCEVIEW,TEXT, IMAGE, VIDEO, AUDIO
+    }
+    public enum ReactionType {
+        LIKE, DISLIKE, LOVE, ANGRY
+    }
+    public enum Status {
+        SENT, DELIVERED, READ, WAITING
+    }
 
-@Data
-@NoArgsConstructor
-class Reactions{
-    private Long senderId;
-    private String reaction_type;
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Reactions {
+        private Long senderId;
+        private ReactionType reactionType;
+    }
 }

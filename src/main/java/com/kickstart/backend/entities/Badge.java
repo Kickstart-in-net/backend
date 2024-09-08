@@ -20,10 +20,12 @@ public class Badge {
     private Long id;
     private LocalDate createdDate;
     private Integer marks;
-    @OneToOne(mappedBy = "projectId")
-    private Project project;
+
+    @ManyToOne
+    @JoinColumn(name = "projectId")
+    private Project projectId;
 
     @ManyToOne
     @JoinColumn(name = "skillId")
-    private Skill skill;
+    private Skill skillId;
 }

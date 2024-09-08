@@ -18,12 +18,15 @@ public class Project {
     @Id
     @GeneratedValue
     private Long id;
-    @OneToMany(mappedBy = "badge")
+
+    @OneToMany(mappedBy = "projectId")
     private List<Badge> badges;
     private String title;
+
     @ManyToOne
     @JoinColumn(name = "ownerId")
-    private Freelancer owner;
+    private Freelancer ownerId;
+
     private String description;
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> techStack;
